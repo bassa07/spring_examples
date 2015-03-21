@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+		  "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+	<bean id="pbName" name="pbName" class="java.lang.String" scope="singleton">
+		<constructor-arg value="Hyderabad"/>
+	</bean>
+	
+	<!-- Autowiring at the moment not working. To see that comment below pbName property -->
+	<bean id="postBox" class="com.sandeep.spring.PostBox" autowire="byName">
+		<property name="pbName">
+			<ref bean="pbName"/>
+		</property>
+	<!--  This demonstrates the use of Collection object as a bean. Instead of property values it takes list collection -->
+		<property name="posts">
+			<list>
+				<ref bean="post1"/>
+				<ref bean="post2"/>
+				<ref bean="post3"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="post1" class="com.sandeep.spring.Post">
+		<property name="fromAddress" value="Hari"/>
+		<property name="body" value="Meet Me"/>
+		<property name="toAddress" value="Rahul"/>
+	</bean>
+	<bean id="post2" class="com.sandeep.spring.Post">
+		<property name="fromAddress" value="Sandeep"/>
+		<property name="body" value="Meet Me"/>
+		<property name="toAddress" value="Rahul"/>
+	</bean>
+	<bean id="post3" class="com.sandeep.spring.Post">
+		<property name="fromAddress" value="Rahul"/>
+		<property name="body" value="Meet Me"/>
+		<property name="toAddress" value="Sandeep"/>
+	</bean>
+	
+	<!-- Demonstration of singleton/prototype bean scopes-->
+	<!--  <bean id="post" class="com.sandeep.spring.Post" scope="singleton"/> -->
+	<bean id="post" class="com.sandeep.spring.Post" scope="prototype"/>
+	<bean id="contextAwarePostBox" class="com.sandeep.spring.ContextAwarePostBox" scope="singleton"/>
+	
+</beans>

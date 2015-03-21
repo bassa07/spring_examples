@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<!-- bean tag's name property is used to create an alias-->
+	<bean id="triangle" class="com.sandeep.spring.Triangle" name="triangle-name">
+		<!--  <property name="pointA" ref="zeroPoint"/> -->
+		<property name="pointA">
+			<!-- Use idRef instead of using ref to explicitely force spring container to -->
+			<!-- load the dependant bean using id property only but not using any aliases -->
+			<ref bean="zeroPoint"/>
+		</property>
+		<property name="pointB">
+		<!-- Inner Bean Example: No Id is required and no ref required -->
+			<bean class="com.sandeep.spring.Point">
+				<property name="x" value="-20"/>
+				<property name="y" value="0"/>
+			</bean>
+		</property>
+		<property name="pointC">
+			<bean class="com.sandeep.spring.Point">
+				<property name="x" value="0"/>
+				<property name="y" value="20"/>
+			</bean>
+		</property>		
+	</bean>
+	
+	<!-- Reusable bean with id  -->
+	<bean id="zeroPoint" class="com.sandeep.spring.Point">
+		<property name="x" value="0"/>
+		<property name="y" value="0"/>
+	</bean>		
+	
+	<!-- Alias Example -->
+	<alias name="triangle" alias="triangleAlias"/>
+	
+</beans>
