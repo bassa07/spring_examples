@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
+		  "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+		  
+<beans default-init-method="myBeansGlobalInit" default-destroy-method="myBeansGolbalDestroy">
+<bean id="chocolate" class="com.sandeep.spring.Chocolate" init-method="myBeanInit" destroy-method="myBeanDestroy">
+	<property name="name" value="KitKat"/>
+	<property name="price" value="20"/>
+</bean>
+<bean id="icecream" class="com.sandeep.spring.IceCream">
+	<property name="name" value="ButterScotch"/>
+	<property name="price" value="55"/>
+</bean>
+</beans>
